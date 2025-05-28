@@ -24,7 +24,7 @@
         <div class="ratio ratio-16x9 shadow rounded">
           <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15815.574957279482!2d112.726029!3d-7.311508!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zN8KwMTgnNDAuMiJTIDExMsKwNDMnMzMuNyJF!5e0!3m2!1sen!2sid!4v1715757067032!5m2!1sen!2sid" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </div>
-        <small class="text-muted d-block text-center mt-2">Klik ikon di peta untuk navigasi</small>
+        <small class="text-muted d-block text-center mt-2">Klik ikon pada peta untuk navigasi</small>
       </div>
     </div>
   </div>
