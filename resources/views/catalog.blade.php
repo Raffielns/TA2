@@ -68,8 +68,8 @@
                         <div class="col-md-4">
                             <div class="card h-100 border-0 shadow-sm">
                                 <img src="{{ asset('storage/files/' . $product->encrypted_filename) }}"
-                                    alt="{{ $product->nama_barang }}" class="card-img-top"
-                                    style="height: 200px; object-fit: cover;">
+                                    class="card-img-top" alt="{{ $product->nama_barang }}"
+                                    data-bs-toggle="modal" data-bs-target="#previewModal{{ $product->id }}">
                                 <div class="card-body d-flex flex-column">
                                     <h6 class="fw-bold">{{ $product->nama_barang }}</h6>
                                     <span

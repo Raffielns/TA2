@@ -18,10 +18,10 @@ return new class extends Migration
             $table->decimal('harga_barang', 15, 2);
             $table->string('deskripsi');
             $table->integer('stock');
+            $table->string('code');
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      */
