@@ -138,7 +138,7 @@
 
     <style>
         .custom-btn-cart {
-            background-color: #1f2731;
+            background-color: #3F72AF;
             color: #fff;
             border: none;
             padding: 10px 12px;
@@ -147,26 +147,26 @@
         }
 
         .custom-btn-cart:hover {
-            background-color: #3a4048;
+            background-color: #124988;
             color: #fff;
         }
 
         .custom-btn-detail {
             background-color: transparent;
-            color: #1f2731;
-            border: 1.5px solid #1f2731;
+            color: #3F72AF;
+            border: 1.5px solid #3F72AF;
             padding: 10px 12px;
             font-size: 14px;
             border-radius: 6px;
         }
 
         .custom-btn-detail:hover {
-            background-color: #1f2731;
+            background-color: #124988;
             color: white;
         }
 
         .custom-badge {
-            background-color: #1f2731;
+            background-color: #3F72AF;
             color: white;
             font-size: 12px;
             padding: 5px 10px;
@@ -174,7 +174,7 @@
         }
 
         .card-body .d-grid {
-            gap: rem;
+            gap: 1rem;
         }
     </style>
 @endsection
