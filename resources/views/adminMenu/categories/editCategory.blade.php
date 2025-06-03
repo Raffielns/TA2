@@ -23,6 +23,10 @@
                                 placeholder="Masukkan nama kategori"
                                 value="{{ old('categoryName', $category->name ?? '') }}" required>
                         </div>
+                        <div class="mb-3">
+                            <label for="image">Gambar Kategori</label>
+                            <input type="file" name="image" class="form-control" required>
+                        </div>
 
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary">

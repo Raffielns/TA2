@@ -11,16 +11,24 @@
                 <div class="swiper-wrapper">
                     @php use Illuminate\Support\Str; @endphp
                     @foreach ($allCategories as $cat)
+                        @php
+                            $produk = $cat->products->first();
+                            $gambar =
+                                $produk && isset($produk->encrypted_filename)
+                                    ? asset('files/' . $produk->encrypted_filename)
+                                    : asset('img/default.png');
+                        @endphp
                         <div class="swiper-slide">
                             <a href="{{ route('catalog.byCategory', ['slug' => $cat->slug]) }}"
                                 class="card border-0 text-white shadow rounded-4 overflow-hidden category-card"
-                                style="background-image: url('{{ asset('img/' . ($cat->image ?? 'default.png')) }}');">
+                                style="background-image: url('{{ $gambar }}');">
                                 <span class="category-badge">{{ $cat->products_count }} Produk</span>
                                 <div class="category-overlay"></div>
                                 <div class="category-name">{{ $cat->name }}</div>
                             </a>
                         </div>
                     @endforeach
+
                 </div>
             </div>
 
