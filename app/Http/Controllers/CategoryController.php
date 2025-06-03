@@ -39,9 +39,16 @@ class CategoryController extends Controller
     {
         $category = new Category;
         $category->name = $request->categoryName;
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('img'), $filename);
+            $category->image = $filename;
+        }
+
         $category->save();
 
-        // Log the creation of a new category
         ActivityLog::create([
             'user_id' => auth()->id(),
             'activity' => 'Menambahkan kategori produk',
@@ -72,6 +79,13 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($id);
         $category->name = $request->categoryName;
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('img'), $filename);
+            $category->image = $filename;
+        }
+
         $category->save();
 
         // Log the update of a category
