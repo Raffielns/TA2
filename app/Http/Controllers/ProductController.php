@@ -29,7 +29,8 @@ class ProductController extends Controller
     public function catalogView()
     {
         $products = Product::with('category')->latest()->get();
-        $allCategories = Category::all();
+        $allCategories = Category::withCount('products')->get();
+
         return view('catalog', compact('products', 'allCategories'));
 
         $query = Product::query();
