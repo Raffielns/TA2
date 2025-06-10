@@ -270,28 +270,28 @@ class OrderController extends Controller
         return $total;
     }
 
-    private function handleMidtransPayment($order)
-    {
-        Config::$serverKey = config('midtrans.server_key');
-        Config::$isProduction = config('midtrans.is_production');
-        Config::$isSanitized = config('midtrans.is_sanitized');
-        Config::$is3ds = config('midtrans.is_3ds');
+    // private function handleMidtransPayment($order)
+    // {
+    //     Config::$serverKey = config('midtrans.server_key');
+    //     Config::$isProduction = config('midtrans.is_production');
+    //     Config::$isSanitized = config('midtrans.is_sanitized');
+    //     Config::$is3ds = config('midtrans.is_3ds');
 
-        $params = [
-            'transaction_details' => [
-                'order_id' => $order->order_number,
-                'gross_amount' => $order->total_amount,
-            ],
-            'customer_details' => [
-                'first_name' => Auth::user()->name,
-                'email' => Auth::user()->email,
-            ]
-        ];
+    //     $params = [
+    //         'transaction_details' => [
+    //             'order_id' => $order->order_number,
+    //             'gross_amount' => $order->total_amount,
+    //         ],
+    //         'customer_details' => [
+    //             'first_name' => Auth::user()->name,
+    //             'email' => Auth::user()->email,
+    //         ]
+    //     ];
 
-        $snapToken = Snap::getSnapToken($params);
-        return response()->json([
-            'success' => true,
-            'redirect_url' => "https://app.sandbox.midtrans.com/snap/v2/vtweb/{$snapToken}"
-        ]);
-    }
+    //     $snapToken = Snap::getSnapToken($params);
+    //     return response()->json([
+    //         'success' => true,
+    //         'redirect_url' => "https://app.sandbox.midtrans.com/snap/v2/vtweb/{$snapToken}"
+    //     ]);
+    // }
 }
