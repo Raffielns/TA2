@@ -64,7 +64,7 @@
                         @if ($order->notes)
                             <div class="row">
                                 <div class="col-12">
-                                    <strong>Catatan Pesanan:</strong><br>
+                                    <strong>Catatan Pesanan Produk:</strong><br>
                                     {{ $order->notes }}
                                 </div>
                             </div>
