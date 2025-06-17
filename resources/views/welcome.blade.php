@@ -56,13 +56,10 @@
 @include('partials.kategorilainnya')
 
 <!-- Industri yang Dilayani -->
-@include('partials.industries')
+@include('partials.produkunggulan')
 
 <!-- Testimoni -->
 @include('partials.testimonials')
-
-<!-- Call to Action -->
-@include('partials.cta')
 
 <!-- Kontak -->
 @include('partials.contact')
