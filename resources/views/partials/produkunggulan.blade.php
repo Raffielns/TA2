@@ -6,48 +6,48 @@
         </div>
 
         <div class="row justify-content-center g-4" id="product-list">
-            @foreach ([
-                ['image' => 'komponen-hidrolik-pneumatik.png', 'title' => 'Komponen Hidrolik dan Pneumatik', 'price' => 'Rp1.200.000'],
-                ['image' => 'komponen-karet-industri.png', 'title' => 'Komponen Karet Industri', 'price' => 'Rp1.900.000'],
-                ['image' => 'ring-dan-sejenisnya.png', 'title' => 'Ring dan Sejenisnya', 'price' => 'Rp2.200.000'],
-                ['image' => 'komponen-mekanik-bengkel.png', 'title' => 'Komponen Mekanik dan Bengkel', 'price' => 'Rp700.000'],
-                ['image' => 'seal-industri-umum.png', 'title' => 'Seal Industri Umum', 'price' => 'Rp400.000'],
-                ['image' => 'komponen-hidrolik-pneumatik.png', 'title' => 'Komponen Hidrolik dan Pneumatik', 'price' => 'Rp1.200.000'],
-                ['image' => 'komponen-hidrolik-pneumatik.png', 'title' => 'Komponen Hidrolik dan Pneumatik', 'price' => 'Rp1.200.000'],
-                ['image' => 'komponen-hidrolik-pneumatik.png', 'title' => 'Komponen Hidrolik dan Pneumatik', 'price' => 'Rp1.200.000'],
-                ['image' => 'komponen-hidrolik-pneumatik.png', 'title' => 'Komponen Hidrolik dan Pneumatik', 'price' => 'Rp1.200.000'],
-                ['image' => 'komponen-hidrolik-pneumatik.png', 'title' => 'Komponen Hidrolik dan Pneumatik', 'price' => 'Rp1.200.000'],
-                ['image' => 'komponen-hidrolik-pneumatik.png', 'title' => 'Komponen Hidrolik dan Pneumatik', 'price' => 'Rp1.200.000'],
-                ['image' => 'komponen-hidrolik-pneumatik.png', 'title' => 'Komponen Hidrolik dan Pneumatik', 'price' => 'Rp1.200.000'],
-            ] as $product)
-            <div class="col-md-3 col-sm-6 mb-4 {{ $loop->iteration > 8 ? 'd-none' : '' }}" data-product="{{ $loop->iteration }}">
-                <div class="card border-0 shadow rounded-4 overflow-hidden product-card position-relative">
-                    <div class="product-img" style="background-image: url('{{ asset('img/' . $product['image']) }}');"></div>
+            @forelse ($products->take(12) as $index => $product)
+                <div class="col-md-3 col-sm-6 mb-4 {{ $index >= 8 ? 'd-none extra-product' : '' }}">
+                    <a href="{{ route('catalog.detail', $product->id) }}"
+                       class="card border-0 shadow-sm rounded-4 overflow-hidden product-card text-decoration-none text-dark position-relative d-block">
+                        <div class="product-img" style="background-image: url('{{ asset('storage/files/' . $product->encrypted_filename) }}');"></div>
 
-                    <!-- Hover button -->
-                    <div class="hover-overlay d-flex justify-content-center align-items-center">
-                        <button class="btn btn-dark rounded-pill px-4 py-2 fw-semibold">Tambah Ke Keranjang</button>
-                    </div>
+                        <!-- Hover Button -->
+                        <div class="hover-overlay d-flex justify-content-center align-items-center">
+                            <form action="{{ route('customer.addToCart') }}" method="POST" class="w-100">
+                                @csrf
+                                <input type="hidden" name="id" value="{{ $product->id }}">
+                                <input type="hidden" name="name" value="{{ $product->nama_barang }}">
+                                <input type="hidden" name="price" value="{{ $product->harga_barang }}">
+                                <input type="hidden" name="quantity" value="1">
+                                <button type="submit" class="btn btn-dark rounded-0 fw-semibold w-100 py-2">TAMBAH KE KERANJANG</button>
+                            </form>
+                        </div>
 
-                    <a href="{{ route('catalog') }}" class="stretched-link"></a>
-                    <div class="product-body text-center p-3 bg-white">
-                        <h6 class="fw-bold" style="color: #112D4E;">{{ $product['title'] }}</h6>
-                        <p class="text-muted mb-0">{{ $product['price'] }}</p>
-                    </div>
+                        <div class="product-body text-center p-3 bg-white">
+                            <h6 class="fw-bold mb-1">{{ $product->nama_barang }}</h6>
+                            <p class="text-muted mb-0">Rp{{ number_format($product->harga_barang, 0, ',', '.') }}</p>
+                        </div>
+                    </a>
                 </div>
-            </div>
-            @endforeach
+            @empty
+                <div class="col-12">
+                    <div class="alert alert-info text-center">Belum ada produk yang tersedia.</div>
+                </div>
+            @endforelse
         </div>
 
-        <!-- Button tampilkan lebih banyak -->
+        @if ($products->count() > 8)
         <div class="text-center mt-4">
             <button class="btn btn-outline-secondary rounded-pill px-4 py-2" id="load-more-btn">Tampilkan Lebih Banyak</button>
         </div>
+        @endif
     </div>
 
     <style>
         .product-card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
         }
 
         .product-card:hover {
@@ -65,25 +65,36 @@
 
         .hover-overlay {
             position: absolute;
-            top: 0;
+            top: 220px;
             left: 0;
             width: 100%;
-            height: 220px;
-            background: rgba(0, 0, 0, 0.4);
+            height: 45px;
+            background-color: #000;
             opacity: 0;
             transition: opacity 0.3s ease;
-            z-index: 2;
+            z-index: 5;
         }
 
         .product-card:hover .hover-overlay {
             opacity: 1;
         }
+
+        .hover-overlay button {
+            color: #fff;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .hover-overlay {
+                height: 40px;
+                top: 200px;
+            }
+        }
     </style>
 
     <script>
-        document.getElementById('load-more-btn').addEventListener('click', function () {
-            const hiddenProducts = document.querySelectorAll('.product-card.d-none');
-            hiddenProducts.forEach(item => item.classList.remove('d-none'));
+        document.getElementById('load-more-btn')?.addEventListener('click', function () {
+            document.querySelectorAll('.extra-product').forEach(item => item.classList.remove('d-none'));
             this.style.display = 'none';
         });
     </script>

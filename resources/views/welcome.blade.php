@@ -55,11 +55,8 @@
 <!-- Kategori Pengerjaan Lainnya -->
 @include('partials.kategorilainnya')
 
-<!-- Industri yang Dilayani -->
+<!-- Produk Unggulan Kami -->
 @include('partials.produkunggulan')
-
-<!-- Testimoni -->
-@include('partials.testimonials')
 
 <!-- Kontak -->
 @include('partials.contact')

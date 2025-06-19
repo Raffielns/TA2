@@ -23,7 +23,7 @@ Auth::routes();
 
 // 🌐 Public Pages
 Route::get('/', function () {
-    $products = Product::latest()->take(3)->get();
+    $products = Product::latest()->get();
     $allCategories = Category::all();
     return view('welcome', compact('products', 'allCategories'));
 })->name('landing');

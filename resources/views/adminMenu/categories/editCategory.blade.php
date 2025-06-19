@@ -25,7 +25,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="image">Gambar Kategori</label>
-                            <input type="file" name="image" class="form-control" required>
+                            <input type="file" name="image" class="form-control">
                         </div>
 
                         <div class="d-grid">

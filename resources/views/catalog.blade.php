@@ -5,7 +5,7 @@
 @section('content')
     <div class="container py-5">
 
-        <!-- Breadcrumb -->
+        <!-- navigasi -->
         <nav aria-label="breadcrumb" class="mb-4">
             <ol class="breadcrumb bg-white p-3 rounded shadow-sm">
                 <li class="breadcrumb-item"><a href="{{ route('landing') }}"><i class="fas fa-home"></i> Home</a></li>
@@ -26,27 +26,7 @@
             <div class="col-md-3">
                 <div class="card mb-4">
                     <div class="card-body">
-                        <h5 class="fw-bold mb-3">Urutkan</h5>
-                        @foreach (['Pengurutan standar', 'Urutkan berdasar tren', 'Urutkan berdasar rating', 'Urutkan terbaru', 'Urutkan termurah', 'Urutkan termahal'] as $index => $label)
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="sort" id="sort{{ $index }}"
-                                    {{ $index === 3 ? 'checked' : '' }}>
-                                <label class="form-check-label" for="sort{{ $index }}">{{ $label }}</label>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <h5 class="fw-bold mb-3">Harga</h5>
-                        <input type="range" class="form-range" min="10000" max="10000000">
-                        <p>Harga: Rp275.000 – Rp4.800.000</p>
-                        <button class="btn btn-dark w-100">Saring</button>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="fw-bold mb-3">Kategori</h5>
+                        <h4 class="fw-bold mb-3">Kategori Produk:</h4>
                         <ul class="list-unstyled">
                             @foreach ($allCategories as $cat)
                                 <li>
@@ -62,7 +42,6 @@
             </div>
 
             <!-- Produk -->
-
             <div class="col-md-9">
                 <h3 class="mb-4">Menampilkan {{ $products->count() }} produk</h3>
                 <div class="row g-4">

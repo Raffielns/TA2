@@ -62,7 +62,7 @@
 
                 <div class="mb-3">
                     <label for="image" class="form-label">Gambar Produk</label>
-                    <input type="file" name="image" id="image" class="form-control" required>
+                    <input type="file" name="image" id="image" class="form-control">
 
                     {{-- Tempat preview gambar --}}
                     <img id="image-preview" class="img-fluid rounded mt-3 shadow" style="max-height: 150px; display: none;">

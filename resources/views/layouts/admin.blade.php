@@ -33,11 +33,12 @@
         <ul class="navbar-nav sidebar sidebar-dark accordion" style="background-color:#357081" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('landing')}}">
                 @if (auth()->user()->role == 1)
                     <div class="sidebar-brand-text mx-6">Dashboard Admin</div>
-                @endif
+                @else
                 <div class="sidebar-brand-text mx-6">Dashboard Manager</div>
+                @endif
             </a>
 
             <!-- Divider -->
@@ -60,31 +61,6 @@
 
             @if (auth()->user()->role == 1)
                 {{-- Menambahkan menu dashboard admin --}}
-                <!-- Notifikasi Pesanan Masuk -->
-                <li class="nav-item dropdown no-arrow mx-1">
-                    <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-bell fa-fw"></i>
-                        <span
-                            class="badge badge-danger badge-counter">{{ auth()->user()->unreadNotifications->count() }}</span>
-                    </a>
-                    <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                        aria-labelledby="alertsDropdown">
-                        <h6 class="dropdown-header">
-                            Notifikasi
-                        </h6>
-                        @foreach (auth()->user()->unreadNotifications as $notification)
-                            <a class="dropdown-item d-flex align-items-center"
-                                href="{{ $notification->data['type'] === 'order' ? route('admin.orders.index') : route('admin.payments.index') }}">
-                                <div>
-                                    <span class="font-weight-bold">{{ $notification->data['message'] }}</span>
-                                    <div class="small text-gray-500">Total: Rp
-                                        {{ number_format($notification->data['amount'], 0, ',', '.') }}</div>
-                                </div>
-                            </a>
-                        @endforeach
-                    </div>
-                </li>
 
                 <!-- Nav Item - Product -->
                 <li class="nav-item {{ request()->routeIs('category.index') ? 'active' : '' }}">
@@ -93,14 +69,6 @@
                         <span>{{ __('Kategori Produk') }}</span>
                     </a>
                 </li>
-
-                <!-- Nav Item - Transaksi -->
-                {{-- <li class="nav-item {{ request()->routeIs('transaction.index') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('transaction.index') }}">
-                        <i class="fas fa-money-bill-wave"></i>
-                        <span>{{ __('Pembayaran') }}</span>
-                    </a>
-                </li> --}}
             @endif
 
             <!-- Nav Item - Product -->
