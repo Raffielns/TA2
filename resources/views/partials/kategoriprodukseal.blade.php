@@ -23,7 +23,7 @@
                                 class="card border-0 text-white shadow rounded-4 overflow-hidden category-card"
                                 style="background-image: url('{{ $gambar }}');">
                                 <span class="category-badge">{{ $cat->products_count }} Produk</span>
-                                <div class="category-overlay"><img src="{{ "storage/$gambar" }}" class="w-100" alt=""></div>
+                                <div class="category"><img src="{{ "storage/$gambar" }}" class="w-100" alt=""></div>
                                 <div class="category-name">{{ $cat->name }}</div>
                             </a>
                         </div>
