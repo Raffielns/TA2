@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
 use App\Models\Category;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
@@ -15,7 +16,6 @@ use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\Admin\AdminPaymentController;
-// use App\Http\Controllers\AdminNotificationController;
 use App\Http\Controllers\MidtransWebhookController;
 
 // 🔐 Auth Routes
@@ -71,8 +71,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/payments', [AdminPaymentController::class, 'index'])->name('admin.payments.index');
     Route::patch('/payments/{payment}/verify', [AdminPaymentController::class, 'verify'])->name('admin.payments.verify');
 
-    // Notifications
-    // Route::get('/notifications/{id}/read', [AdminNotificationController::class, 'markAsRead'])->name('admin.notifications.read');
+    // Ulasan
+    Route::resource('reviewAdmin', ReviewController::class);
 });
 
 // 🧾 CUSTOMER Routes (role = 0)

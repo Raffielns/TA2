@@ -182,7 +182,7 @@
                                 </option>
                                 <option value="diproses" {{ $order->status == 'diproses' ? 'selected' : '' }}>Diproses
                                 </option>
-                                <option value="dikirim" {{ $order->status == 'dikirim' ? 'selected' : '' }}>Diproses
+                                <option value="dikirim" {{ $order->status == 'dikirim' ? 'selected' : '' }}>Dikirim
                                 </option>
                                 <option value="selesai" {{ $order->status == 'selesai' ? 'selected' : '' }}>Selesai
                                 </option>

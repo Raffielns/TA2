@@ -95,6 +95,14 @@
                 </a>
             </li>
 
+            <!-- Nav Item - Ulasan -->
+            <li class="nav-item {{ request()->routeIs('reviewAdmin.index') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('reviewAdmin.index') }}">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <span>{{ __('Ulasan Customer') }}</span>
+                </a>
+            </li>
+
             {{-- Menambahkan menu dashboard user:2 --}}
             {{-- <li class="nav-item {{ request()->routeIs('category.index') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('category.index') }}">
