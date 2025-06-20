@@ -30,8 +30,8 @@
                                     <td>{{ $index + 1 }}</td>
                                     <td>
                                         <div class="d-flex align-items-center">
-                                        <img src="{{ asset('storage/files/' . $review->product->encrypted_filename) }}"
-                                            alt="" class="img-fluid rounded" style="max-height: 50px;">
+                                            <img src="{{ asset('storage/files/' . $review->product->encrypted_filename) }}"
+                                                alt="" class="img-fluid rounded" style="max-height: 50px;">
                                             <span>{{ $review->product->nama_barang }}</span>
                                         </div>
                                     </td>
@@ -51,11 +51,14 @@
                                     </td>
                                     <td>
                                         <div class="review-text">
-                                            {{ Str::limit($review->review, 50) }}
-                                            @if (strlen($review->review) > 50)
-                                                <a href="#" class="text-primary" data-bs-toggle="modal"
-                                                    data-bs-target="#reviewModal{{ $review->id }}">Selengkapnya</a>
-                                            @endif
+                                            @php
+                                                // Memecah teks menjadi array per 50 karakter
+                                                $chunks = str_split($review->review, 30);
+                                            @endphp
+
+                                            @foreach ($chunks as $chunk)
+                                                {{ $chunk }}<br>
+                                            @endforeach
                                         </div>
                                     </td>
                                     <td>{{ $review->created_at->format('d M Y') }}</td>
