@@ -47,6 +47,7 @@
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
                                         </td>
+                                    @endif
                                         <td class="text-center">
                                             <form action="{{ route('products.destroy', $product->id) }}" method="POST"
                                                 class="delete-form">
@@ -58,7 +59,6 @@
                                                 </button>
                                             </form>
                                         </td>
-                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>

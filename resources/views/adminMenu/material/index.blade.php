@@ -21,9 +21,6 @@
         @endif
 
         <div class="card shadow mb-4">
-            {{-- <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Data Bahan Baku <span>History Pesanan</span></h6>
-        </div> --}}
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -36,7 +33,9 @@
                                 <th>Harga/Unit</th>
                                 <th>Supplier</th>
                                 <th>Status</th>
-                                <th>Aksi</th>
+                                @if (auth()->user()->role == 1)
+                                    <th colspan="2" class="text-center">Aksi</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -81,6 +80,7 @@
                                             <span class="badge badge-success">Tersedia</span>
                                         @endif
                                     </td>
+                                    @if (auth()->user()->role == 1)
                                     <td>
                                         <div class="d-flex">
                                             <a href="{{ route('materials.edit', $material->id) }}"
@@ -97,6 +97,7 @@
                                             </form>
                                         </div>
                                     </td>
+                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>
