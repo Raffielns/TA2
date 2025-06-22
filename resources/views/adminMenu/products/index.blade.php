@@ -43,7 +43,7 @@
                                     @if (auth()->user()->role == 1)
                                         <td class="text-center">
                                             <a href="{{ route('products.edit', $product->id) }}"
-                                                class="btn btn-sm btn-outline-warning">
+                                                class="btn btn-sm btn-outline-primary">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
                                         </td>
