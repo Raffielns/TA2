@@ -105,8 +105,8 @@
                                     @foreach ($order->items as $item)
                                         <tr>
                                             <td>
-                                            <img src="{{ asset('storage/files/' . $item->product->encrypted_filename) }}"
-                                                alt="" class="img-fluid rounded" style="max-height: 80px;">
+                                                <img src="{{ asset('storage/files/' . $item->product->encrypted_filename) }}"
+                                                    alt="" class="img-fluid rounded" style="max-height: 80px;">
                                             </td>
                                             <td class="text-start">{{ $item->product->nama_barang }}</td>
                                             <td>Rp {{ number_format($item->price, 0, ',', '.') }}</td>
@@ -159,8 +159,7 @@
                         </button>
                     </div>
                     <div class="modal-body text-center">
-                        <img src="{{ asset('storage/' . $order->payment_proof) }}" alt="Bukti Transfer"
-                            class="img-fluid">
+                        <img src="{{ asset('storage/' . $order->payment_proof) }}" alt="Bukti Transfer" class="img-fluid">
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Tutup</button>

@@ -16,6 +16,7 @@
                         <thead class="thead-light">
                             <tr>
                                 <th>No</th>
+                                <th>Gambar</th>
                                 <th>Produk</th>
                                 <th>Customer</th>
                                 <th>Order ID</th>
@@ -29,12 +30,10 @@
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
                                     <td>
-                                        <div class="d-flex align-items-center">
-                                            <img src="{{ asset('storage/files/' . $review->product->encrypted_filename) }}"
-                                                alt="" class="img-fluid rounded" style="max-height: 50px;">
-                                            <span>{{ $review->product->nama_barang }}</span>
-                                        </div>
+                                        <img src="{{ asset('storage/files/' . $review->product->encrypted_filename) }}"
+                                            alt="" class="img-fluid rounded" style="max-height: 50px;">
                                     </td>
+                                    <td class="text-start">{{ $review->product->nama_barang }}</td>
                                     <td>{{ $review->user->name }}</td>
                                     <td>#{{ $review->order_id }}</td>
                                     <td>

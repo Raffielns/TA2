@@ -5,8 +5,8 @@
         <div class="card w-100 shadow-sm border-0">
             <div class="card-body p-4">
                 <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h5 class="card-title fw-semibold">Kelola Produk</h5>
                     @if (auth()->user()->role == 1)
+                    <h5 class="card-title fw-semibold">Kelola Produk</h5>
                         <a class="btn btn-sm btn-warning" href="{{ route('products.create') }}">
                             <i class="bi bi-plus-circle me-1"></i> Tambah Produk
                         </a>
