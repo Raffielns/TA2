@@ -33,7 +33,8 @@
                         <table class="table">
                             <thead class="thead-light">
                                 <tr>
-                                    <th style="border-top-left-radius: 10px;">Produk</th>
+                                    <th style="border-top-left-radius: 10px;">Gambar</th>
+                                    <th>Item</th>
                                     <th>Harga</th>
                                     <th>Jumlah</th>
                                     <th>Warna</th>
@@ -47,6 +48,10 @@
                                 @foreach ($cartItems as $item)
                                     @php $total += $item->price * $item->quantity @endphp
                                     <tr>
+                                        <td>
+                                            <img src="{{ asset('storage/files/' . $item->product->encrypted_filename) }}"
+                                                alt="" class="img-fluid rounded" style="max-height: 80px;">
+                                        </td>
                                         <td style="font-weight: 600;">{{ $item->product_name }}</td>
                                         <td>Rp {{ number_format($item->price, 0, ',', '.') }}</td>
                                         <td>
@@ -91,8 +96,8 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <td colspan="5" class="text-right font-weight-bold">Total Belanja:</td>
-                                    <td colspan="2" class="font-weight-bold">
+                                    <td colspan="6" class="text-right font-weight-bold">Total Belanja:</td>
+                                    <td colspan="3" class="font-weight-bold">
                                         Rp {{ number_format($total, 0, ',', '.') }}
                                     </td>
                                 </tr>

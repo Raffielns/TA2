@@ -5,6 +5,11 @@
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Detail Pesanan #{{ $order->order_number }}</h1>
+            <button class="btn btn-primary btn-sm">
+                <a href="{{ route('order.status') }}" class="btn btn-primary btn-sm">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+            </button>
         </div>
 
         <div class="row">
@@ -89,6 +94,7 @@
                             <table class="table">
                                 <thead>
                                     <tr>
+                                        <th>Gambar</th>
                                         <th>Produk</th>
                                         <th>Harga</th>
                                         <th>Qty</th>
@@ -99,11 +105,10 @@
                                     @foreach ($order->items as $item)
                                         <tr>
                                             <td>
-                                                <strong>{{ $item->product->name }}</strong><br>
-                                                @if ($item->variants)
-                                                    <small>{{ $item->variants }}</small>
-                                                @endif
+                                            <img src="{{ asset('storage/files/' . $item->product->encrypted_filename) }}"
+                                                alt="" class="img-fluid rounded" style="max-height: 80px;">
                                             </td>
+                                            <td class="text-start">{{ $item->product->nama_barang }}</td>
                                             <td>Rp {{ number_format($item->price, 0, ',', '.') }}</td>
                                             <td>{{ $item->quantity }}</td>
                                             <td>Rp {{ number_format($item->price * $item->quantity, 0, ',', '.') }}</td>
@@ -112,7 +117,7 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th colspan="3" class="text-right">Subtotal:</th>
+                                        <th colspan="4" class="text-right">Subtotal:</th>
                                         <td>Rp {{ number_format($order->total_amount, 0, ',', '.') }}</td>
                                     </tr>
                                 </tfoot>

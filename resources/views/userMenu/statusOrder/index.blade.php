@@ -29,6 +29,11 @@
                                 @foreach ($orders as $order)
                                     <tr>
                                         <td>#{{ $order->order_number }}</td>
+                                        {{-- <td>
+                                            <img src="{{ asset('storage/files/' . $item->product->encrypted_filename) }}"
+                                                alt="" class="img-fluid rounded" style="max-height: 80px;">
+                                        </td>
+                                        <td class="text-start">{{ $product->nama_barang }}</td> --}}
                                         <td>{{ $order->created_at->format('d M Y H:i') }}</td>
                                         <td>Rp {{ number_format($order->total_amount, 0, ',', '.') }}</td>
                                         <td>

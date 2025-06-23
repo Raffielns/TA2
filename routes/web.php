@@ -68,8 +68,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/orders/{order}', [AdminOrderController::class, 'show'])->name('admin.orders.show');
     Route::patch('/orders/{order}/update-status', [AdminOrderController::class, 'update'])->name('admin.orders.update');
 
-    Route::get('/payments', [AdminPaymentController::class, 'index'])->name('admin.payments.index');
-    Route::patch('/payments/{payment}/verify', [AdminPaymentController::class, 'verify'])->name('admin.payments.verify');
+    // Route::get('/payments', [AdminPaymentController::class, 'index'])->name('admin.payments.index');
+    // Route::patch('/payments/{payment}/verify', [AdminPaymentController::class, 'verify'])->name('admin.payments.verify');
 
     // Ulasan
     Route::resource('reviewAdmin', ReviewController::class);

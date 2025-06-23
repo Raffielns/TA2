@@ -19,6 +19,7 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
+                                            <th>Gambar</th>
                                             <th>Produk</th>
                                             <th>Harga</th>
                                             <th>Qty</th>
@@ -28,6 +29,10 @@
                                     <tbody>
                                         @foreach ($cartItems as $item)
                                             <tr>
+                                                <td>
+                                                    <img src="{{ asset('storage/files/' . $item->product->encrypted_filename) }}"
+                                                        alt="" class="img-fluid rounded" style="max-height: 80px;">
+                                                </td>
                                                 <td>{{ $item->product_name }}</td>
                                                 <td>Rp {{ number_format($item->price, 0, ',', '.') }}</td>
                                                 <td>{{ $item->quantity }}</td>
