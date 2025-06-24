@@ -39,7 +39,7 @@
                         <tr>
                             <th style="width: 5%">No.</th>
                             <th style="text-align: left;">Nama Kategori</th>
-                            <th style="width: 30%">Jumlah Produk</th>
+                            <th style="width: 20%">Jumlah Produk</th>
                             <th colspan="2" style="width: 20%" class="text-center">Aksi</th>
                         </tr>
                     </thead>
@@ -49,7 +49,7 @@
                             <td>{{ $loop->iteration }}</td>
                             <td class="text-start">{{ $kategori->name }}</td>
                             <td>
-                                <span class="badge bg-light">{{ $kategori->products_count }} produk</span>
+                                <span class="badge bg-warning">{{ $kategori->products_count }} produk</span>
                             </td>
                             <td class="text-center">
                                 <a href="{{ route('category.edit', $kategori->id) }}" class="btn btn-sm btn-outline-primary">
