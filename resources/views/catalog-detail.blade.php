@@ -2,7 +2,8 @@
 
 @section('content')
     <!-- Background Header -->
-    <div style="background-image: url('{{ asset('img/bg-dashboard.jpg') }}'); background-size: cover; background-position: center; padding: 60px 0 30px 0;">
+    <div
+        style="background-image: url('{{ asset('img/bg-dashboard.jpg') }}'); background-size: cover; background-position: center; padding: 60px 0 30px 0;">
         <div class="container">
             <!-- Breadcrumb -->
             <nav aria-label="breadcrumb" class="mb-4">
@@ -47,7 +48,30 @@
                             class="fas fa-share-alt"></i> Bagikan</a>
                 </div>
 
-                <div class="product-rating mb-3 d-flex align-items-center text-warning">
+                {{-- ambil data ulasan customer --}}
+                @php
+                    $reviews = $product->reviews ?? collect();
+                    $averageRating = $reviews->avg('rating') ?? 0;
+                    $totalReviews = $reviews->count();
+                @endphp
+
+
+                <div class="product-rating mb-3 d-flex align-items-center">
+                    @for ($i = 1; $i <= 5; $i++)
+                        @if ($i <= floor($averageRating))
+                            <i class="fas fa-star text-warning"></i>
+                        @elseif ($i - $averageRating < 1)
+                            <i class="fas fa-star-half-alt text-warning"></i>
+                        @else
+                            <i class="far fa-star text-warning"></i>
+                        @endif
+                    @endfor
+                    <span class="ms-2 text-muted">
+                        {{ number_format($averageRating, 1) }} dari {{ $totalReviews }} ulasan
+                    </span>
+                </div>
+
+                {{-- <div class="product-rating mb-3 d-flex align-items-center text-warning">
                     @for ($i = 1; $i <= 5; $i++)
                         @if ($i <= 4)
                             <i class="fas fa-star"></i>
@@ -56,7 +80,7 @@
                         @endif
                     @endfor
                     <span class="ms-2 text-muted">4.5 dari 128 ulasan</span>
-                </div>
+                </div> --}}
 
                 <h4 class="text-primary fw-bold">Rp {{ number_format($product->harga_barang, 0, ',', '.') }}</h4>
                 <p class="mt-3 text-dark">{{ $product->deskripsi }}</p>

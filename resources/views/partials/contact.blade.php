@@ -1,36 +1,46 @@
-<div id="contact" class="py-5" style="background-color: #F9F7F7;">
+<footer class="py-5" style="background-color: #dedfe0;">
     <div class="container">
-      <div class="row">
-        <div class="col-lg-6 mb-4">
-          <h2 class="fw-bold mb-4" style="color: #112D4E;">Hubungi Kami</h2>
-          <p class="text-muted">Punya pertanyaan? Kirim pesan Anda melalui form berikut:</p>
-          <ul class="list-unstyled">
-            <li><strong>Alamat:</strong> Ketintang barat III No.182, Surabaya 60231</li>
-            <li><strong>Telepon:</strong> 031-8273618</li>
-            <li><strong>Email:</strong> anugerahsukses.s@gmail.com</li>
-          </ul>
-        </div>
-        <div class="col-lg-6">
-          <div class="card shadow-sm border-0">
-            <div class="card-body p-4">
-              <form>
-                <div class="mb-3">
-                  <label for="name" class="form-label">Nama</label>
-                  <input type="text" class="form-control" id="name" required>
+        <div class="row gy-4">
+            <!-- Kolom Profil Perusahaan -->
+            <div class="col-md-4">
+                <h5 class="fw-bold">CV. Anugerah Sukses Sejahtera</h5>
+                <p class="text-muted">Mengutamakan kualitas serta kepuasan pelanggan adalah motto kami.</p>
+                {{-- <ul class="list-unstyled text-muted small">
+                    <li><strong>Alamat:</strong> Ketintang barat III No.182, Surabaya 60231</li>
+                    <li><strong>Telepon:</strong> 031-8273618</li>
+                    <li><strong>Email:</strong> anugerahsukses.s@gmail.com</li>
+                </ul> --}}
+                <!-- Ikon Sosial Media -->
+                <div class="mt-6">
+                    <a href="#" class="text-muted me-4"><i class="fab fa-facebook fa-lg"></i></a>
+                    <a href="#" class="text-muted me-4"><i class="fab fa-instagram fa-lg"></i></a>
+                    <a href="#" class="text-muted me-4"><i class="fab fa-youtube fa-lg"></i></a>
+                    <a href="#" class="text-muted me-4"><i class="fab fa-tiktok fa-lg"></i></a>
                 </div>
-                <div class="mb-3">
-                  <label for="email" class="form-label">Email</label>
-                  <input type="email" class="form-control" id="email" required>
-                </div>
-                <div class="mb-3">
-                  <label for="message" class="form-label">Pesan</label>
-                  <textarea class="form-control" id="message" rows="4" required></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary" style="background-color: #3F72AF; border-color: #3F72AF;">Kirim Pesan</button>
-              </form>
             </div>
-          </div>
+
+            <!-- Kolom Link Penting -->
+            <div class="col-md-4">
+                <h5 class="fw-bold">Letak Perusahaan</h5>
+                <ul class="list-unstyled">
+                    <li><strong>Alamat:</strong> Ketintang barat III No.182, Surabaya 60231</li>
+                    <li><strong>Telepon:</strong> 031-8273618</li>
+                    <li><strong>Email:</strong> anugerahsukses.s@gmail.com</li>
+                    {{-- <li><a href="#" class="text-muted text-decoration-none">Konfirmasi Pembayaran</a></li>
+                    <li><a href="#" class="text-muted text-decoration-none">Pembayaran & Pengiriman</a></li>
+                    <li><a href="#" class="text-muted text-decoration-none">Syarat & Ketentuan</a></li> --}}
+                </ul>
+            </div>
+
+            <!-- Kolom Marketplace -->
+            <div class="col-md-4">
+                <h5 class="fw-bold">MARKETPLACE</h5>
+                <div class="d-flex flex-wrap gap-2">
+                    <a href="#"><img src="{{ asset('img/bukalapak.png') }}" alt="Bukalapak" width="35"></a>
+                    <a href="#"><img src="{{ asset('img/Tokped.png') }}" alt="Tokopedia" width="55"></a>
+                    <a href="#"><img src="{{ asset('img/shopee.png') }}" alt="Shopee" width="35"></a>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+</footer>
