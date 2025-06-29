@@ -143,12 +143,17 @@
 
                                     <!-- Alamat Pengiriman -->
                                     <div class="form-group mt-4">
-                                        <label><strong>Alamat Pengiriman</strong></label>
+                                        <label><strong>Alamat Pengiriman:</strong></label>
                                         <textarea class="form-control" name="shipping_address" rows="3" required></textarea>
                                     </div>
 
                                     <div class="form-group mt-4">
-                                        <label><strong>Catatan (Opsional)</strong></label>
+                                        <label><strong>No. Telp / WhatsApp:</strong></label>
+                                        <textarea type="number" class="form-control" name="telephone" rows="1" required></textarea>
+                                    </div>
+
+                                    <div class="form-group mt-4">
+                                        <label><strong>Catatan (Opsional):</strong></label>
                                         <textarea class="form-control" name="notes" rows="2"></textarea>
                                     </div>
 

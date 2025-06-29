@@ -51,7 +51,7 @@
                 {{-- ambil data ulasan customer --}}
                 @php
                     $reviews = $product->reviews ?? collect();
-                    $averageRating = $reviews->avg('rating') ?? 0;
+                    $averageRating = $reviews->avg('ulasan') ?? 0;
                     $totalReviews = $reviews->count();
                 @endphp
 
