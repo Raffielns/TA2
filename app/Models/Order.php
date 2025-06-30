@@ -15,6 +15,7 @@ class Order extends Model
         'payment_proof',
         'bank_name',
         'notes',
+        'telephone',
         'status'
     ];
 

@@ -101,7 +101,8 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product = Product::with(['category', 'images'])->findOrFail($id);
+        // review realtime
+        $product = Product::with(['category', 'images', 'reviews.user'])->findOrFail($id);
         $product->increment('views');
 
         $relatedProducts = Product::with('category')

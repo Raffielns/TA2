@@ -52,6 +52,7 @@
                                                     [
                                                         'pending' => 'warning',
                                                         'diproses' => 'info',
+                                                        'dikirim' => 'primary',
                                                         'selesai' => 'success',
                                                         'dibatalkan' => 'danger',
                                                         'gagal' => 'dark',

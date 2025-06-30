@@ -59,7 +59,7 @@ class OrderController extends Controller
             'quantity' => $request->quantity,
             'color' => $request->color,
             'size' => $request->size,
-            'image_path' => $product->image_path
+            'image_path' => $product->image_path,
         ];
 
         $cart = session()->get('cart', []);
@@ -140,6 +140,7 @@ class OrderController extends Controller
         $request->validate([
             'payment_method' => 'required|in:cod,transfer,midtrans',
             'shipping_address' => 'required|string|max:500',
+            'telephone' => 'nullable|string|max:15',
             'notes' => 'nullable|string|max:255',
             'bank_name' => 'required_if:payment_method,transfer',
             'payment_proof' => 'required_if:payment_method,transfer|image|mimes:jpeg,png,jpg|max:2048',

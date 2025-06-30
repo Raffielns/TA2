@@ -55,6 +55,16 @@
                             </div>
                         </div>
 
+
+                        @if ($order->telephone)
+                            <div class="row">
+                                <div class="col-12">
+                                    <strong>No. Telp/WhatsApp:</strong><br>
+                                    {{ $order->telephone }}
+                                </div>
+                            </div>
+                        @endif
+
                         @if ($order->notes)
                             <div class="row">
                                 <div class="col-12">

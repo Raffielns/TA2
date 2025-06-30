@@ -148,8 +148,8 @@
                                     </div>
 
                                     <div class="form-group mt-4">
-                                        <label><strong>No. Telp / WhatsApp:</strong></label>
-                                        <textarea type="number" class="form-control" name="telephone" rows="1" required></textarea>
+                                        <label><strong>No. Telp/WhatsApp:</strong></label>
+                                        <textarea class="form-control" name="telephone" rows="1"></textarea>
                                     </div>
 
                                     <div class="form-group mt-4">

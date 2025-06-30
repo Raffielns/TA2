@@ -49,7 +49,37 @@
                 </div>
 
                 {{-- ambil data ulasan customer --}}
-                @php
+                @if ($product->reviews->count() > 0)
+                    <div class="mt-4">
+                        <h5 class="mb-3">Ulasan Pelanggan</h5>
+
+                        @foreach ($product->reviews->sortByDesc('created_at')->take(5) as $review)
+                            <div class="mb-4 border-bottom pb-3">
+                                <div class="d-flex justify-content-between">
+                                    <strong>{{ $review->user->name }}</strong>
+                                    <small class="text-muted">{{ $review->created_at->format('d M Y') }}</small>
+                                </div>
+                                <div class="mb-1 text-warning">
+                                    @for ($i = 1; $i <= 5; $i++)
+                                        @if ($i <= $review->rating)
+                                            <i class="fas fa-star"></i>
+                                        @else
+                                            <i class="far fa-star"></i>
+                                        @endif
+                                    @endfor
+                                    <span class="ms-1 text-muted">({{ $review->rating }})</span>
+                                </div>
+                                <p class="mb-0">{{ $review->review }}</p>
+                            </div>
+                        @endforeach
+                    </div>
+                @else
+                    <div class="mt-4">
+                        <p class="text-muted">Belum ada ulasan untuk produk ini.</p>
+                    </div>
+                @endif
+
+                {{-- @php
                     $reviews = $product->reviews ?? collect();
                     $averageRating = $reviews->avg('ulasan') ?? 0;
                     $totalReviews = $reviews->count();
@@ -69,17 +99,6 @@
                     <span class="ms-2 text-muted">
                         {{ number_format($averageRating, 1) }} dari {{ $totalReviews }} ulasan
                     </span>
-                </div>
-
-                {{-- <div class="product-rating mb-3 d-flex align-items-center text-warning">
-                    @for ($i = 1; $i <= 5; $i++)
-                        @if ($i <= 4)
-                            <i class="fas fa-star"></i>
-                        @elseif ($i == 5)
-                            <i class="fas fa-star-half-alt"></i>
-                        @endif
-                    @endfor
-                    <span class="ms-2 text-muted">4.5 dari 128 ulasan</span>
                 </div> --}}
 
                 <h4 class="text-primary fw-bold">Rp {{ number_format($product->harga_barang, 0, ',', '.') }}</h4>
