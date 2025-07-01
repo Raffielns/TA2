@@ -22,6 +22,7 @@
                             class="badge
                         @if ($order->status == 'pending') badge-warning
                         @elseif($order->status == 'diproses') badge-info
+                        @elseif($order->status == 'dikirim') badge-info
                         @elseif($order->status == 'selesai') badge-success
                         @elseif($order->status == 'dibatalkan') badge-danger
                         @else badge-secondary @endif">
@@ -79,13 +80,13 @@
                 <!-- Shipping Information -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Informasi Pengiriman</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Informasi Pelanggan</h6>
                     </div>
                     <div class="card-body">
                         <address>
                             <strong>{{ $order->user->name }}</strong><br>
                             {{ $order->user->email }}<br>
-                            {{ $order->user->phone ?? 'Nomor telepon tidak tersedia' }}<br><br>
+                            {{-- {{ $order->telephone }}<br><br> --}}
                             {!! nl2br(e($order->shipping_address)) !!}
                         </address>
                     </div>

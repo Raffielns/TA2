@@ -61,6 +61,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::delete('/admin/category/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
 
     Route::resource('transaction', TransaksiController::class);
+    Route::get('/admin/material', [MaterialController::class, 'index'])->name('material.edit');
     Route::resource('materials', MaterialController::class)->except(['show']);
 
     // Order & Payment Management

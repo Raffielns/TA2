@@ -27,7 +27,7 @@
                             class="badge
                         @if ($order->status == 'pending') badge-warning
                         @elseif($order->status == 'diproses') badge-info
-                        @elseif($order->status == 'dikirim') badge-info
+                        @elseif($order->status == 'dikirim') badge-primary
                         @elseif($order->status == 'selesai') badge-success
                         @elseif($order->status == 'dibatalkan') badge-danger
                         @else badge-secondary @endif">
@@ -81,7 +81,7 @@
                         <address>
                             <strong>{{ $order->user->name }}</strong><br>
                             {{ $order->user->email }}<br>
-                            {{ $order->user->phone ?? 'Nomor telepon tidak tersedia' }}<br><br>
+                            {{-- {{ $order->telephone }}<br><br> --}}
                             {!! nl2br(e($order->shipping_address)) !!}
                         </address>
                     </div>
