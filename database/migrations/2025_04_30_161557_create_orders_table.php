@@ -27,7 +27,7 @@ return new class extends Migration
 
             $table->text('shipping_address');
             $table->text('notes')->nullable();
-            $table->text('telephone')->nullable(); // untuk kontak customer
+            $table->string('telephone')->nullable(); // untuk kontak customer
             $table->string('status')->default('pending');
             $table->timestamps();
 

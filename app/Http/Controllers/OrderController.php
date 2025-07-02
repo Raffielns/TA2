@@ -140,7 +140,7 @@ class OrderController extends Controller
         $request->validate([
             'payment_method' => 'required|in:cod,transfer,midtrans',
             'shipping_address' => 'required|string|max:500',
-            'telephone' => 'nullable|string|max:15',
+            'telephone' => 'required',
             'notes' => 'nullable|string|max:255',
             'bank_name' => 'required_if:payment_method,transfer',
             'payment_proof' => 'required_if:payment_method,transfer|image|mimes:jpeg,png,jpg|max:2048',
@@ -168,6 +168,7 @@ class OrderController extends Controller
                 'total_amount' => $total,
                 'shipping_address' => $request->shipping_address,
                 'notes' => $request->notes,
+                'telephone' => $request->telephone,
                 'status' => 'pending',
                 'payment_method' => $request->payment_method
             ];

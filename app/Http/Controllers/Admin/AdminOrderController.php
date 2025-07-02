@@ -20,7 +20,8 @@ class AdminOrderController extends Controller
     {
         $order->load([
             'user',
-            'items.product'
+            'items.product',
+            'receipt'
         ]);
 
         return view('adminMenu.pesanan.show', compact('order'));
@@ -29,7 +30,7 @@ class AdminOrderController extends Controller
     public function update(Request $request, Order $order)
     {
         $validated = $request->validate([
-            'status' => 'required|in:pending,diproses,selesai,dibatalkan',
+            'status' => 'required|in:pending,diproses,dikirim,selesai,dibatalkan',
             'notes' => 'nullable|string|max:500'
         ]);
 

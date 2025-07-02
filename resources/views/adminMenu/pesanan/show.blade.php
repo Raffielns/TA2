@@ -13,6 +13,11 @@
                     <button class="btn btn-primary ml-2" data-toggle="modal" data-target="#updateStatusModal">
                         <i class="fas fa-sync-alt"></i> Update Status
                     </button>
+                    @if ($order->status == 'diproses' || $order->status == 'dikirim' || $order->status == 'selesai')
+                        <a href="{{ route('admin.receipt.generate', $order->id) }}" class="btn btn-info ml-2">
+                            <i class="fa-solid fa-receipt"></i> Cetak Struk
+                        </a>
+                    @endif
                 @endif
             </div>
         </div>
@@ -81,7 +86,7 @@
                         <address>
                             <strong>{{ $order->user->name }}</strong><br>
                             {{ $order->user->email }}<br>
-                            {{-- {{ $order->telephone }}<br><br> --}}
+                            {{ $order->telephone }}<br><br>
                             {!! nl2br(e($order->shipping_address)) !!}
                         </address>
                     </div>

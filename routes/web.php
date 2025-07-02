@@ -17,6 +17,7 @@ use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\Admin\AdminPaymentController;
 use App\Http\Controllers\MidtransWebhookController;
+use App\Http\Controllers\ReceiptController;
 
 // 🔐 Auth Routes
 Auth::routes();
@@ -28,7 +29,7 @@ Route::get('/', function () {
     return view('welcome', compact('products', 'allCategories'));
 })->name('landing');
 
-Route::get('/aboutus', fn() => view('aboutus'))->name('aboutus');
+Route::get('/aboutus', fn () => view('aboutus'))->name('aboutus');
 
 // 🛍 Catalog for all (not inside /admin!)
 Route::get('/catalog', [ProductController::class, 'catalogView'])->name('catalog');
@@ -48,9 +49,9 @@ Route::middleware('auth')->group(function () {
 
 // 🛠 ADMIN Routes (role = 1)
 Route::prefix('admin')->middleware(['auth'])->group(function () {
-    Route::get('/', fn() => view('adminMenu.dashboard'))->name('admin.dashboard');
+    Route::get('/', fn () => view('adminMenu.dashboard'))->name('admin.dashboard');
     Route::get('/home', [HomeController::class, 'index'])->name('dashboard');
-    Route::get('/user', fn() => view('adminMenu.user'))->name('user');
+    Route::get('/user', fn () => view('adminMenu.user'))->name('user');
 
     // Master Data
     Route::resource('products', ProductController::class);
@@ -61,7 +62,6 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::delete('/admin/category/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
 
     Route::resource('transaction', TransaksiController::class);
-    Route::get('/admin/material', [MaterialController::class, 'index'])->name('material.edit');
     Route::resource('materials', MaterialController::class)->except(['show']);
 
     // Order & Payment Management
@@ -71,11 +71,18 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     // Ulasan
     Route::resource('reviewAdmin', ReviewController::class);
+
+    // Receipt Management
+    Route::get('/orders/{order}/generate-receipt', [ReceiptController::class, 'generateReceipt'])
+        ->name('admin.receipt.generate');
+
+    Route::get('/receipts/{receipt}/download', [ReceiptController::class, 'downloadReceipt'])
+        ->name('admin.receipt.download');
 });
 
 // 🧾 CUSTOMER Routes (role = 0)
 Route::middleware(['auth', 'role:0'])->group(function () {
-    Route::get('/dashboard', fn() => view('userMenu.index'))->name('user.dashboard');
+    Route::get('/dashboard', fn () => view('userMenu.index'))->name('user.dashboard');
 
     // 🛒 Order
     Route::prefix('user')->group(function () {

@@ -137,6 +137,14 @@
                     </div>
                 </div>
 
+                @if ($order->receipt)
+                    <div class="card">
+                        <a href="{{ route('admin.receipt.generate', $order->id) }}" class="btn btn-info">
+                            <i class="fa-solid fa-receipt"></i> Download Struk
+                        </a>
+                    </div>
+                @endif
+
                 <!-- Payment Proof -->
                 @if ($order->payment_proof)
                     <div class="card shadow mb-4">

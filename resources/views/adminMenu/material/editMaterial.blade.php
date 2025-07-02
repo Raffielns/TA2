@@ -3,7 +3,7 @@
 @section('main-content')
     <div class="container px-5 my-5">
         <h3 class="mb-5">Edit Bahan Baku</h3>
-        <form method="POST" action="{{ route('materials.edit', $material->id) }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('materials.update', $material->id) }}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 

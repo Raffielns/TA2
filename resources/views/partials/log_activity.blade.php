@@ -1,7 +1,6 @@
 <div class="card shadow mb-4">
     <div class="card-header bg-white d-flex justify-content-between align-items-center">
         <h6 class="m-0 font-weight-bold text-primary">Log Aktivitas Terbaru</h6>
-        <a href="#" class="btn btn-sm btn-secondary">Lihat Semua</a>
     </div>
     <div class="card-body">
         @if ($logs->isEmpty())

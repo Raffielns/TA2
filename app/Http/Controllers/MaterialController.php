@@ -59,7 +59,7 @@ class MaterialController extends Controller
 
     public function edit(Material $material)
     {
-        return view('adminMenu.material.index', compact('material'));
+        return view('adminMenu.material.editMaterial', compact('material'));
     }
 
     public function update(Request $request, Material $material)
