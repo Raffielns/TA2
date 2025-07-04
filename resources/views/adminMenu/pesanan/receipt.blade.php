@@ -31,7 +31,7 @@
             border-bottom: 1px dashed #e0e0e0;
         }
 
-        .header h1 {
+        .header h3 {
             font-size: 22px;
             margin: 0 0 5px 0;
             color: #2c3e50;
@@ -43,27 +43,27 @@
             font-weight: 500;
         }
 
-        .info {
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
             margin-bottom: 20px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
         }
 
         .info-block {
-            flex: 1;
-            min-width: 200px;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
         .info-title {
             font-weight: 600;
             color: #555;
             margin-bottom: 3px;
+            font-size: 12px;
         }
 
         .info-value {
             color: #333;
+            font-size: 13px;
         }
 
         table {
@@ -78,11 +78,13 @@
             padding: 8px 10px;
             text-align: left;
             font-weight: 500;
+            font-size: 12px;
         }
 
         table td {
             border: 1px solid #e0e0e0;
             padding: 8px 10px;
+            font-size: 12px;
         }
 
         table tr:nth-child(even) {
@@ -128,7 +130,6 @@
             border-radius: 4px;
             font-weight: 600;
             font-size: 12px;
-            margin-left: 5px;
         }
 
         .paid {
@@ -146,13 +147,13 @@
             margin-bottom: 10px;
         }
 
-        .barcode {
+        /* .barcode {
             margin: 15px 0;
             text-align: center;
             padding: 10px 0;
             border-top: 1px dashed #e0e0e0;
             border-bottom: 1px dashed #e0e0e0;
-        }
+        } */
 
         .notes {
             margin-top: 20px;
@@ -162,21 +163,40 @@
             background-color: #f8f9fa;
             border-radius: 4px;
         }
+
+        .product-img {
+            max-height: 80px;
+            max-width: 60px;
+            object-fit: contain;
+        }
+
+        .info-section {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .info-section .info-block {
+            flex: 1;
+            min-width: 200px;
+        }
     </style>
 </head>
 
 <body>
     <div class="invoice-container">
         <div class="header">
-            <img src="{{ public_path('img/Logo CV. ASS.png') }}" style="width: 100px;">
-            <h2>INVOICE PEMBAYARAN</h2>
+            <img src="{{ public_path('img/Logo CV. ASS.png') }}" class="logo">
+            <h3>INVOICE PEMBAYARAN</h3>
             <div class="invoice-number">No: {{ $receiptNumber }}</div>
         </div>
 
-        <div class="info">
+        <div class="info-section">
             <div class="info-block">
-                <div class="info-title">Nomor Pesanan</div>
-                <div class="info-value">{{ $order->order_number }}</div>
+                <div class="info-title">Tanggal Pesanan</div>
+                <div class="info-value">{{ $order->created_at->format('d M Y H:i') }}</div>
             </div>
             <div class="info-block">
                 <div class="info-title">Pelanggan</div>
@@ -188,77 +208,92 @@
             </div>
             <div class="info-block">
                 <div class="info-title">Status Pembayaran</div>
+                <div class="info-value">
+                    @if ($order->payment_method == 'cod')
+                        <span class="payment-status pending">COD</span>
+                    @else
+                        <span class="payment-status paid">Lunas</span>
+                    @endif
+                </div>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <div class="info-block">
+                <div class="info-title">Informasi Pengiriman</div>
+                <div class="info-value">{{ $order->shipping_address }}</div>
+            </div>
+            <div class="info-block">
+                <div class="info-title">Catatan Pesanan</div>
+                <div class="info-value">
+                    @if ($order->notes)
+                        {{ $order->notes }}
+                    @else
+                        Tidak ada catatan.
+                    @endif
+                </div>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Produk</th>
+                        <th class="text-right">Harga</th>
+                        <th class="text-right">Qty</th>
+                        <th class="text-right">Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($order->items as $item)
+                        <tr>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <img src="{{ public_path('storage/files/' . $item->product->encrypted_filename) }}"
+                                        class="product-img">
+                                    <span>{{ $item->product->nama_barang }}</span>
+                                </div>
+                            </td>
+                            <td class="text-right">Rp {{ number_format($item->price, 0, ',', '.') }}</td>
+                            <td class="text-right">{{ $item->quantity }}</td>
+                            <td class="text-right">Rp {{ number_format($item->price * $item->quantity, 0, ',', '.') }}
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+                <tfoot>
+                    <tr class="total-row">
+                        <td colspan="3" class="text-right">Subtotal:</td>
+                        <td class="text-right">Rp {{ number_format($order->total_amount, 0, ',', '.') }}</td>
+                    </tr>
+                    <tr class="total-row">
+                        <td colspan="3" class="text-right">Total:</td>
+                        <td class="text-right">Rp {{ number_format($order->total_amount, 0, ',', '.') }}</td>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <div class="notes">
                 @if ($order->payment_method == 'cod')
-                    <div class="payment-status pending">COD</div>
+                    <strong>Catatan:</strong> Pembayaran dilakukan saat barang diterima. Pastikan jumlah yang dibayar
+                    sesuai
+                    dengan total yang tertera.
                 @else
-                    <div class="payment-status paid">Lunas</div>
+                    <strong>Catatan:</strong> Pembayaran sudah diterima secara penuh. Terima kasih telah berbelanja
+                    dengan
+                    kami.
                 @endif
             </div>
-        </div>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Gambar</th>
-                    <th>Produk</th>
-                    <th class="text-right">Harga</th>
-                    <th class="text-right">Qty</th>
-                    <th class="text-right">Subtotal</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($order->items as $item)
-                    <tr>
-                        <td>
-                            <img src="{{ public_path('storage/files/' . $item->product->encrypted_filename) }}"
-                                alt="" class="img-fluid rounded" style="max-height: 80px;">
-                        </td>
-                        <td>{{ $item->product->nama_barang }}</td>
-                        <td class="text-right">Rp {{ number_format($item->price, 0, ',', '.') }}</td>
-                        <td class="text-right">{{ $item->quantity }}</td>
-                        <td class="text-right">Rp {{ number_format($item->price * $item->quantity, 0, ',', '.') }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-            <tfoot>
-                <tr class="total-row">
-                    <td colspan="4" class="text-right">Subtotal:</td>
-                    <td class="text-right">Rp {{ number_format($order->total_amount, 0, ',', '.') }}</td>
-                </tr>
-                <tr class="total-row">
-                    <td colspan="4" class="text-right">Total:</td>
-                    <td class="text-right">Rp {{ number_format($order->total_amount, 0, ',', '.') }}</td>
-                </tr>
-                <tr>
-                    <td colspan="4" class="text-right">Metode Pembayaran:</td>
-                    <td class="text-right">
-                        {{ $order->payment_method == 'transfer' ? 'Transfer Bank' : strtoupper($order->payment_method) }}
-                    </td>
-                </tr>
-            </tfoot>
-        </table>
-
-        {{-- <div class="barcode">
-            <!-- You can add a barcode here if you have one -->
-            <div style="font-family: 'Libre Barcode 39'; font-size: 36px;">*{{ $order->order_number }}*</div>
-            <div style="font-size: 10px; margin-top: 5px;">{{ $order->order_number }}</div>
-        </div> --}}
-
-        <div class="notes">
-            <strong>Catatan:</strong> Pembayaran sudah diterima secara penuh. Terima kasih telah berbelanja dengan kami.
-        </div>
-
-        <div class="footer">
-            <div class="thank-you">Terima kasih atas kepercayaan Anda!</div>
-            <p>Invoice ini sah dan diproses secara elektronik, tidak memerlukan tanda tangan.</p>
-            <div class="company-info">
-                <strong>Nama Perusahaan Anda</strong><br>
-                Alamat Perusahaan, Kota, Kode Pos<br>
-                Telp: (021) 12345678 | Email: info@perusahaan.com<br>
-                ©️ {{ date('Y') }}. All Rights Reserved.
+            <div class="footer">
+                <div class="thank-you">Terima kasih atas kepercayaan Anda!</div>
+                <div class="company-info">
+                    <strong>CV. Anugerah Sukses Sejahtera</strong><br>
+                    Ketintang Barat III No.182, Surabaya, 60231<br>
+                    Telp: (031) 8273618 | Email: anugerahsukses.s@gmail.com<br>
+                    ©Raffielendiaz {{ date('Y') }}. All Rights Reserved.
+                </div>
             </div>
         </div>
-    </div>
 </body>
 
 </html>
