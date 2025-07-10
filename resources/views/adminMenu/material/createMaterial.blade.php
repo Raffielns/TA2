@@ -66,10 +66,10 @@
                 </div>
             </div>
 
-            <div class="mb-3">
+            {{-- <div class="mb-3">
                 <label class="form-label" for="minimum_stock">Stok Minimum</label>
                 <input class="form-control" id="minimum_stock" name="minimum_stock" type="number" placeholder="Stok minimum sebelum restock" required />
-            </div>
+            </div> --}}
 
             <div class="mb-3">
                 <label for="image" class="form-label">Gambar Bahan Baku</label>
