@@ -30,7 +30,6 @@ class MaterialController extends Controller
             'unit' => 'required|string',
             'price' => 'required|numeric|min:0',
             'supplier' => 'required|string|max:255',
-            'minimum_stock' => 'required|numeric|min:0',
             'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
         ]);
 
@@ -72,7 +71,6 @@ class MaterialController extends Controller
             'unit' => 'required|string',
             'price' => 'required|numeric|min:0',
             'supplier' => 'required|string|max:255',
-            'minimum_stock' => 'required|numeric|min:0',
             'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
         ]);
 

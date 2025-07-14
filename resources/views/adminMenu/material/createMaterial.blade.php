@@ -19,14 +19,8 @@
                 <label class="form-label" for="category">Kategori Bahan</label>
                 <select name="category" id="category" class="form-control" required>
                     <option value="">Pilih Kategori</option>
-                    <option value="Seal Hidrolik dan Pneumatik">Seal Hidrolik dan Pneumatik</option>
-                    <option value="Seal Industri Umum">Seal Industri Umum</option>
-                    <option value="Seal Karet dan Cor PU">Seal Karet dan Cor PU</option>
-                    <option value="Seal Khusus">Seal Khusus</option>
-                    <option value="Ring dan Sejenisnya">Ring dan Sejenisnya</option>
-                    <option value="Komponen Seal Industri">Komponen Seal Industri</option>
+                    <option value="Semua Kategori Seal">Semua Kategori Seal</option>
                     <option value="Komponen Mekanik & Bengkel">Komponen Mekanik & Bengkel</option>
-                    <option value="Komponen Hidrolik dan Pneumatik">Komponen Hidrolik dan Pneumatik</option>
                 </select>
             </div>
 
@@ -45,7 +39,7 @@
                         <option value="kg">Kilogram (kg)</option>
                         <option value="g">Gram (g)</option>
                         <option value="liter">Liter</option>
-                        <option value="ml">Mililiter (ml)</option>
+                        <option value="roll">Roll </option>
                         <option value="pcs">Pieces (pcs)</option>
                     </select>
                 </div>

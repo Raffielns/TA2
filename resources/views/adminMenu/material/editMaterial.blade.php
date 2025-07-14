@@ -22,14 +22,8 @@
                 <select name="category" id="category" class="form-control" required>
                     <option value="">Pilih Kategori</option>
                     @foreach ([
-                        'Seal Hidrolik dan Pneumatik',
-                        'Seal Industri Umum',
-                        'Seal Karet dan Cor PU',
-                        'Seal Khusus',
-                        'Ring dan Sejenisnya',
-                        'Komponen Seal Industri',
+                        'Semua Kategori Seal',
                         'Komponen Mekanik & Bengkel',
-                        'Komponen Hidrolik dan Pneumatik'
                     ] as $kategori)
                         <option value="{{ $kategori }}" {{ $material->category == $kategori ? 'selected' : '' }}>
                             {{ $kategori }}
@@ -50,7 +44,7 @@
                 <div class="col-md-6 mb-3">
                     <label class="form-label" for="unit">Satuan</label>
                     <select name="unit" id="unit" class="form-control" required>
-                        @foreach (['kg', 'g', 'liter', 'ml', 'pcs'] as $unit)
+                        @foreach (['kg', 'g', 'liter', 'roll', 'pcs'] as $unit)
                             <option value="{{ $unit }}" {{ $material->unit == $unit ? 'selected' : '' }}>{{ strtoupper($unit) }}</option>
                         @endforeach
                     </select>
@@ -89,7 +83,7 @@
             </div>
 
             <div class="d-grid">
-                <button class="btn btn-success" type="submit">Perbarui</button>
+                <button class="btn btn-success" type="update">Perbarui</button>
             </div>
         </form>
     </div>

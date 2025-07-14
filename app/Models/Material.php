@@ -17,7 +17,6 @@ class Material extends Model
         'unit',
         'price',
         'supplier',
-        'minimum_stock',
         'image'
     ];
 }

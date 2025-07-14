@@ -31,7 +31,7 @@
                                 <th>Kategori</th>
                                 <th>Stok</th>
                                 <th>Harga/Unit</th>
-                                <th>Supplier</th>
+                                <th>Temp. Kerja</th>
                                 <th>Status</th>
                                 @if (auth()->user()->role == 1)
                                     <th colspan="2" class="text-center">Aksi</th>
@@ -65,9 +65,6 @@
                                     </td>
                                     <td>
                                         {{ $material->stock }} {{ $material->unit }}
-                                        @if ($material->stock <= $material->minimum_stock)
-                                            <div class="text-danger small">Stok rendah!</div>
-                                        @endif
                                     </td>
                                     <td>Rp {{ number_format($material->price, 0, ',', '.') }}</td>
                                     <td>{{ $material->supplier }}</td>

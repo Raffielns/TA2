@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('unit');
             $table->decimal('price', 12, 2);
             $table->string('supplier');
-            $table->decimal('minimum_stock', 10, 2);
             $table->string('image')->nullable();
             $table->timestamps();
         });
