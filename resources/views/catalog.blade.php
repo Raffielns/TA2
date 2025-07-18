@@ -24,14 +24,14 @@
         <div class="row">
             <!-- Sidebar -->
             <div class="col-md-3">
-                <div class="card mb-4">
+                <div class="card mb-4 custom-sidebar">
                     <div class="card-body">
-                        <h4 class="fw-bold mb-3">Kategori Produk:</h4>
+                        <h4 class="fw-bold mb-3 text-white">Kategori Produk:</h4>
                         <ul class="list-unstyled">
                             @foreach ($allCategories as $cat)
-                                <li>
+                                <li class="mb-2">
                                     <a href="{{ route('catalog.byCategory', ['slug' => $cat->slug]) }}"
-                                        class="text-decoration-none">
+                                        class="sidebar-link text-decoration-none d-block py-1 px-2 rounded">
                                         {{ $cat->name }}
                                     </a>
                                 </li>
@@ -68,7 +68,7 @@
                                             <input type="hidden" name="quantity" value="1">
                                             <input type="hidden" name="color" value="Hitam">
                                             <input type="hidden" name="size" value="M">
-                                            <button type="submit" class="btn custom-btn-cart w-100">
+                                            <button type="submit" class="btn custom-btn-cart w-100 mb-2">
                                                 <i class="fas fa-cart-plus me-1"></i> Tambah ke Keranjang
                                             </button>
                                         </form>
@@ -118,44 +118,144 @@
     </div>
 
     <style>
-        .custom-btn-cart {
-            background-color: #3F72AF;
-            color: #fff;
-            border: none;
-            padding: 10px 12px;
-            font-size: 14px;
-            border-radius: 6px;
+        :root {
+            --primary-color: #141E46;
+            --secondary-color: #2E8B57;
+            --accent-color: #FF6969;
+            --light-color: #FFF5E0;
         }
 
-        .custom-btn-cart:hover {
-            background-color: #124988;
-            color: #fff;
+        /* Product Card */
+        .product-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 12px;
+            overflow: hidden;
         }
 
-        .custom-btn-detail {
-            background-color: transparent;
-            color: #3F72AF;
-            border: 1.5px solid #3F72AF;
-            padding: 10px 12px;
-            font-size: 14px;
-            border-radius: 6px;
-        }
-
-        .custom-btn-detail:hover {
-            background-color: #124988;
-            color: white;
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
 
         .custom-badge {
-            background-color: #3F72AF;
+            background-color: var(--primary-color);
             color: white;
             font-size: 12px;
             padding: 5px 10px;
             border-radius: 8px;
         }
 
-        .card-body .d-grid {
-            gap: 1rem;
+        .card-body h6.fw-bold {
+            font-weight: 600;
+            color: #333;
+            /* Warna teks lebih gelap */
+        }
+
+        .product-actions {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 2;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .product-card:hover .product-actions {
+            opacity: 1;
+        }
+
+        /* Tombol Tambah ke Keranjang */
+        .custom-btn-cart {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            font-size: 14px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .custom-btn-cart:hover {
+            background-color: #0d1633;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(20, 30, 70, 0.2);
+        }
+
+        /* Tombol Lihat Detail */
+        .custom-btn-detail {
+            background-color: white;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            padding: 8px 12px;
+            font-size: 14px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            width: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .custom-btn-detail:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(20, 30, 70, 0.2);
+        }
+
+        /* Sidebar Link */
+        .sidebar-link {
+            color: #495057;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .sidebar-link:hover {
+            background-color: var(--primary-color);
+            color: white;
+            padding-left: 20px !important;
+        }
+
+        .sidebar-link i {
+            transition: transform 0.3s;
+        }
+
+        .sidebar-link:hover i {
+            transform: rotate(90deg);
+            color: white;
+        }
+
+        /* Breadcrumb Navigasi */
+        .breadcrumb {
+            background-color: #f8f9fa !important;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .breadcrumb-item a {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .breadcrumb-item.active {
+            color: #6c757d;
+            font-weight: 500;
+        }
+
+        /* Empty State */
+        .empty-state {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 767.98px) {
+            .product-actions {
+                opacity: 1;
+            }
+
+            .sidebar-link {
+                padding-left: 15px !important;
+            }
         }
     </style>
 @endsection

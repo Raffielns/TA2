@@ -10,7 +10,7 @@
             <div class="col-md-3 col-sm-6">
                 <a href="{{ route('catalog') }}" class="card border-0 text-white shadow rounded-4 overflow-hidden category-card"
                    style="background-image: url('{{ asset('img/komponen-hidrolik-pneumatik.png') }}');">
-                    <span class="category-badge">5 Produk</span>
+                    {{-- <span class="category-badge">5 Produk</span> --}}
                     <div class="category-overlay"></div>
                     <div class="category-name">Komponen Hidrolik & Pneumatic</div>
                 </a>
@@ -19,7 +19,7 @@
             <div class="col-md-3 col-sm-6">
                 <a href="{{ route('catalog') }}" class="card border-0 text-white shadow rounded-4 overflow-hidden category-card"
                    style="background-image: url('{{ asset('img/komponen-mekanik-bengkel.png') }}');">
-                    <span class="category-badge">4 Produk</span>
+                    {{-- <span class="category-badge">4 Produk</span> --}}
                     <div class="category-overlay"></div>
                     <div class="category-name">Komponen Per Mekanik</div>
                 </a>
