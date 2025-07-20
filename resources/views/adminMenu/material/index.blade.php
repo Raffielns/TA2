@@ -31,7 +31,7 @@
                                 <th>Kategori</th>
                                 <th>Stok</th>
                                 <th>Harga/Unit</th>
-                                <th>Temp. Kerja</th>
+                                <th>Supplier</th>
                                 <th>Status</th>
                                 @if (auth()->user()->role == 1)
                                     <th colspan="2" class="text-center">Aksi</th>
