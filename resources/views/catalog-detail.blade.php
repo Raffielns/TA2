@@ -303,4 +303,5 @@
             color: white !important;
         }
     </style>
+
 @endsection

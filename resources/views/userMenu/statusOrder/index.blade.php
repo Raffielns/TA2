@@ -68,14 +68,14 @@
                                         <td>
                                             <div class="d-flex">
                                                 @if ($order->payment_method == 'midtrans' && $order->status == 'pending')
-                                                    <button class="pay-button btn btn-primary"
+                                                    <button class="pay-button btn btn-primary btn-sm"
                                                         data-snap-token="{{ $order->snap_token }}"
                                                         data-order-id="{{ $order->id }}">
                                                         <i class="fas fa-credit-card"></i> Pay Now
                                                     </button>
                                                 @endif
                                                 <a href="{{ route('order.detail', $order->id) }}"
-                                                    class="btn btn-sm btn-primary">Detail</a>
+                                                    class="btn btn-sm btn-outline-primary ms-2">Detail</a>
                                             </div>
                                         </td>
                                     </tr>
