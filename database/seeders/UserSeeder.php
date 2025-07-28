@@ -35,6 +35,16 @@ class UserSeeder extends Seeder
                 'updated_at' => now()
             ],
             [
+                'name' => 'Admin',
+                'last_name' => 'Pemesanan',
+                'email' => 'adminpemesanan@gmail.com',
+                'email_verified_at' => now(),
+                'password' => bcrypt('password'),
+                'role' => 3, // misalnya 3 = admin pemesanan
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
                 'name' => 'Customer',
                 'last_name' => 'User',
                 'email' => 'customer@gmail.com',

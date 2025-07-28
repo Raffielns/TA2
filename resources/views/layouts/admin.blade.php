@@ -32,12 +32,13 @@
         <!-- Sidebar -->
         <ul class="navbar-nav sidebar sidebar-dark accordion" style="background-color:#357081" id="accordionSidebar">
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('landing')}}">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('landing') }}">
                 @if (auth()->user()->role == 1)
                     <div class="sidebar-brand-text mx-6">Dashboard Admin</div>
+                @elseif(auth()->user()->role == 2)
+                    <div class="sidebar-brand-text mx-6">Dashboard Manager</div>
                 @else
-                <div class="sidebar-brand-text mx-6">Dashboard Manager</div>
+                    <div class="sidebar-brand-text mx-6">Dashboard Staff</div>
                 @endif
             </a>
 
@@ -59,74 +60,55 @@
                 {{ __('Menu Dashboard') }}
             </div>
 
-            @if (auth()->user()->role == 1)
-                {{-- Menambahkan menu dashboard admin --}}
-
-                <!-- Nav Item - Product -->
-                <li class="nav-item {{ request()->routeIs('category.index') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('category.index') }}">
-                        <i class="fas fa-list"></i>
-                        <span>{{ __('Kategori Produk') }}</span>
-                    </a>
-                </li>
+            <!-- Kategori Produk - Tampilkan untuk role 1 dan 2 -->
+            @if(auth()->user()->role == 1 || auth()->user()->role == 2)
+            <li class="nav-item {{ request()->routeIs('category.index') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('category.index') }}">
+                    <i class="fas fa-list"></i>
+                    <span>{{ __('Kategori Produk') }}</span>
+                </a>
+            </li>
             @endif
 
-            <!-- Nav Item - Product -->
+            <!-- Produk - Tampilkan untuk role 1 dan 2 -->
+            @if(auth()->user()->role == 1 || auth()->user()->role == 2)
             <li class="nav-item {{ request()->routeIs('products.index') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('products.index') }}">
                     <i class="fas fa-shopping-cart"></i>
                     <span>{{ __('Produk') }}</span>
                 </a>
             </li>
+            @endif
 
-            <!-- Nav Item - Pesanan -->
-            <li class="nav-item {{ request()->routeIs('admin.orders.index') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.orders.index') }}">
-                    <i class="bi bi-receipt-cutoff"></i>
-                    <span>{{ __('Pesanan') }}</span>
-                </a>
-            </li>
-
-            <!-- Nav Item - Bahan baku -->
+            <!-- Bahan Baku - Tampilkan untuk role 1 dan 2 -->
+            @if(auth()->user()->role == 1 || auth()->user()->role == 2)
             <li class="nav-item {{ request()->routeIs('materials.index') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('materials.index') }}">
                     <i class="fas fa-box"></i>
                     <span>{{ __('Bahan Baku') }}</span>
                 </a>
             </li>
+            @endif
 
-            <!-- Nav Item - Ulasan -->
+            <!-- Pesanan - Tampilkan untuk role 2 dan 3, tapi tidak untuk role 1 -->
+            @if(auth()->user()->role == 2 || auth()->user()->role == 3)
+            <li class="nav-item {{ request()->routeIs('admin.orders.index') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.orders.index') }}">
+                    <i class="bi bi-receipt-cutoff"></i>
+                    <span>{{ __('Pesanan') }}</span>
+                </a>
+            </li>
+            @endif
+
+            <!-- Ulasan Customer - Tampilkan untuk role 1 dan 2 -->
+            @if(auth()->user()->role == 1 || auth()->user()->role == 2)
             <li class="nav-item {{ request()->routeIs('reviewAdmin.index') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('reviewAdmin.index') }}">
                     <i class="fas fa-money-bill-wave"></i>
                     <span>{{ __('Ulasan Customer') }}</span>
                 </a>
             </li>
-
-            {{-- Menambahkan menu dashboard user:2 --}}
-            {{-- <li class="nav-item {{ request()->routeIs('category.index') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('category.index') }}">
-                    <i class="fa-brands fa-product-hunt"></i>
-                    <span>{{ __('Test') }}</span>
-                </a>
-            </li>
-            <li class="nav-item {{ request()->routeIs('category.index') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('category.index') }}">
-                    <i class="fa-brands fa-product-hunt"></i>
-                    <span>{{ __('Test') }}</span>
-                </a>
-            </li> --}}
-
-
-            <!-- Nav Item - User -->
-            {{-- <li class="nav-item {{ Nav::isRoute('user') }}">
-                <a class="nav-link" href="{{ route('user') }}">
-                    <i class="fas fa-fw fa-user"></i>
-                    <span>{{ __('User') }}</span>
-                </a>
-            </li> --}}
-
-
+            @endif
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

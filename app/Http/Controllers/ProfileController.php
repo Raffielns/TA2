@@ -22,12 +22,15 @@ class ProfileController extends Controller
             $view = 'adminMenu.profile_admin';
         } elseif ($view == 2) {
             $view = 'adminMenu.profile_admin';
+        } elseif ($view == 3) {
+            $view = 'adminMenu.profile_admin';
         } else {
             $view = 'userMenu.profile_user'; // Default to user profile
         }
 
         return view($view);
     }
+
 
     public function update(Request $request)
     {

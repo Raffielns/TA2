@@ -52,6 +52,8 @@ class LoginController extends Controller
             $this->redirectTo = route('dashboard');
         } elseif ($user->role == 2) {
             $this->redirectTo = route('dashboard');
+        } elseif ($user->role == 3) {
+            $this->redirectTo = route('dashboard');
         } else {
             $this->redirectTo = route('landing');
         }
