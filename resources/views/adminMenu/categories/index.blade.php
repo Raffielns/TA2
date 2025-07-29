@@ -19,11 +19,13 @@
                     </div>
                 </div>
                 <!-- Kanan -->
+                @if (auth()->user()->role == 1)
                 <div>
                     <a class="btn btn-sm btn-warning" href="{{ route('category.create') }}">
                         <i class="fas fa-plus me-1"></i> Tambah Kategori
                     </a>
                 </div>
+                @endif
             </div>
 
             @if (session('success'))
@@ -40,7 +42,9 @@
                             <th style="width: 5%">No.</th>
                             <th style="text-align: left;">Nama Kategori</th>
                             <th style="width: 20%">Jumlah Produk</th>
+                            @if (auth()->user()->role == 1)
                             <th colspan="2" style="width: 20%" class="text-center">Aksi</th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody>
@@ -51,6 +55,7 @@
                             <td>
                                 <span class="badge bg-warning">{{ $kategori->products_count }} produk</span>
                             </td>
+                            @if (auth()->user()->role == 1)
                             <td class="text-center">
                                 <a href="{{ route('category.edit', $kategori->id) }}" class="btn btn-sm btn-outline-primary">
                                     <i class="fas fa-edit"></i>
@@ -65,6 +70,7 @@
                                     </button>
                                 </form>
                             </td>
+                            @endif
                         </tr>
                         @endforeach
                     </tbody>
