@@ -99,14 +99,6 @@
                                                 </label>
                                             </div>
 
-                                            {{-- <div class="form-check mb-3">
-                                                <input class="form-check-input" type="radio" name="payment_method"
-                                                    id="transfer" value="transfer">
-                                                <label class="form-check-label" for="transfer">
-                                                    <i class="fas fa-university mr-2"></i> Transfer Bank
-                                                </label>
-                                            </div> --}}
-
                                             <div class="form-check mb-3">
                                                 <input class="form-check-input" type="radio" name="payment_method"
                                                     id="midtrans" value="midtrans">
@@ -116,30 +108,6 @@
                                             </div>
                                         </div>
                                     </div>
-
-                                    <!-- Transfer Bank Details (Hidden by Default) -->
-                                    {{-- <div id="bankDetails" style="display:none;">
-                                        <div class="form-group">
-                                            <label>Pilih Bank :</label>
-                                            <select class="form-control" name="bank_name">
-                                                <option value="bca">BCA</option>
-                                                <option value="bni">BNI</option>
-                                                <option value="bri">BRI</option>
-                                                <option value="mandiri">Mandiri</option>
-                                            </select>
-                                        </div>
-                                        <div class="alert alert-info">
-                                            <p>Silakan transfer ke:</p>
-                                            <p><strong>Bank: BCA</strong><br>
-                                                No. Rekening: 1234567890<br>
-                                                A/N:CV. Anugerah Sukses Sejahtera<br>
-                                                Jumlah: Rp {{ number_format($total, 0, ',', '.') }}</p>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Upload Bukti Transfer</label>
-                                            <input type="file" class="form-control-file" name="payment_proof">
-                                        </div>
-                                    </div> --}}
 
                                     <!-- Alamat Pengiriman -->
                                     <div class="form-group mt-4">

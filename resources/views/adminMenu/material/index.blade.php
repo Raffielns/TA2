@@ -33,9 +33,9 @@
                                 <th>Harga/Unit</th>
                                 <th>Supplier</th>
                                 <th>Status</th>
-                                @if (auth()->user()->role == 1)
-                                    <th colspan="2" class="text-center">Aksi</th>
-                                @endif
+                                {{-- @if (auth()->user()->role == 1) --}}
+                                <th colspan="2" class="text-center">Aksi</th>
+                                {{-- @endif --}}
                             </tr>
                         </thead>
                         <tbody>
@@ -77,13 +77,15 @@
                                             <span class="badge badge-success">Tersedia</span>
                                         @endif
                                     </td>
-                                    @if (auth()->user()->role == 1)
+
                                     <td>
                                         <div class="d-flex">
-                                            <a href="{{ route('materials.edit', $material->id) }}"
-                                                class="btn btn-sm btn-primary mr-2" title="Edit">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
+                                            @if (auth()->user()->role == 1)
+                                                <a href="{{ route('materials.edit', $material->id) }}"
+                                                    class="btn btn-sm btn-primary mr-2" title="Edit">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                            @endif
                                             <form action="{{ route('materials.destroy', $material->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
@@ -94,7 +96,6 @@
                                             </form>
                                         </div>
                                     </td>
-                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>

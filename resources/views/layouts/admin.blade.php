@@ -100,15 +100,13 @@
             </li>
             @endif
 
-            <!-- Ulasan Customer - Tampilkan untuk role 1 dan 2 -->
-            @if(auth()->user()->role == 1 || auth()->user()->role == 2)
+            <!-- Ulasan Customer - Tampilkan untuk semua role -->
             <li class="nav-item {{ request()->routeIs('reviewAdmin.index') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('reviewAdmin.index') }}">
                     <i class="fas fa-money-bill-wave"></i>
                     <span>{{ __('Ulasan Customer') }}</span>
                 </a>
             </li>
-            @endif
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
