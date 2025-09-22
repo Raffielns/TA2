@@ -22,8 +22,7 @@
             <div class="col-lg-6 mb-4">
                 <div class="card border-2 shadow-sm rounded-lg overflow-hidden">
                     <img id="mainImage" src="{{ asset('storage/files/' . $product->encrypted_filename) }}"
-                        class="img-fluid w-100"
-                        style="height: 400px; object-fit: contain;">
+                        class="img-fluid w-100" style="height: 400px; object-fit: contain;">
                 </div>
 
                 <!-- Thumbnail Gallery -->
@@ -174,18 +173,20 @@
                     @forelse ($relatedProducts as $related)
                         <div class="col">
                             <div class="card h-100 border-2 shadow-sm product-card">
-                                <div class="position-relative overflow-hidden" style="height: 180px;">
+                                <div class="product-image-wrapper">
                                     <img src="{{ asset('storage/files/' . $related->encrypted_filename) }}"
-                                        class="card-img-top h-100 object-fit-contain" alt="{{ $related->nama_barang }}">
+                                        class="product-image" alt="{{ $related->nama_barang }}">
                                     <div class="product-badge">
-                                        <span
-                                            class="badge bg-dark">{{ $related->category->name ?? 'Uncategorized' }}</span>
+                                        <span class="badge bg-dark">
+                                            {{ $related->category->name ?? 'Uncategorized' }}
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="card-body d-flex flex-column">
                                     <h6 class="fw-bold mb-1">{{ $related->nama_barang }}</h6>
-                                    <p class="text-danger fw-bold mb-2">Rp
-                                        {{ number_format($related->harga_barang, 0, ',', '.') }}</p>
+                                    <p class="text-danger fw-bold mb-2">
+                                        Rp {{ number_format($related->harga_barang, 0, ',', '.') }}
+                                    </p>
                                     <a href="{{ route('catalog.detail', $related->id) }}"
                                         class="btn custom-btn-detail mt-auto">
                                         <i class="fas fa-eye me-1"></i> Lihat Detail
@@ -201,6 +202,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 
     <style>
@@ -301,6 +303,31 @@
         .bg-primary {
             background-color: var(--primary-color) !important;
             color: white !important;
+        }
+
+        /* Wrapper untuk gambar produk */
+        .product-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 220px;
+            /* tinggi seragam */
+            overflow: hidden;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+        }
+
+        /* Gambar produk */
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* gambar penuh, potong sesuai box */
+            display: block;
+        }
+
+        /* Animasi hover biar lebih hidup */
+        .product-image-wrapper:hover .product-image {
+            transform: scale(1.05);
         }
     </style>
 
