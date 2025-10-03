@@ -3,7 +3,7 @@
 
 <div class="py-5" style="background-color: #F9F7F7; position: relative;">
     <div class="container">
-        <h2 class="fw-bold text-center mb-4" style="color: #112D4E;">Kategori Produk Seal</h2>
+        <h2 class="fw-bold text-center mb-4" style="color: #112D4E;">Kategori Produk Sealent</h2>
 
         <!-- Swiper Wrapper -->
         <div class="position-relative px-5">
