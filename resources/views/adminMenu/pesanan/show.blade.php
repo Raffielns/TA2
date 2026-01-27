@@ -171,7 +171,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    @if (auth()->user()->role != 3)
+                    @if (auth()->user()->role != 1)
                         <button class="btn btn-primary ml-2" data-toggle="modal" data-target="#updateStatusModal">
                             <i class="fas fa-sync-alt"></i> Update Status
                         </button>

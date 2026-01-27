@@ -91,7 +91,7 @@
             @endif
 
             <!-- Pesanan - Tampilkan untuk role 2 dan 3, tapi tidak untuk role 1 -->
-            @if(auth()->user()->role == 2 || auth()->user()->role == 3)
+            @if(auth()->user()->role == 2 || auth()->user()->role == 1)
             <li class="nav-item {{ request()->routeIs('admin.orders.index') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.orders.index') }}">
                     <i class="bi bi-receipt-cutoff"></i>
