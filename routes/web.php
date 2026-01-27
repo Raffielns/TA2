@@ -97,6 +97,7 @@ Route::middleware(['auth', 'role:0'])->group(function () {
 
         Route::get('/statusOrder', [OrderController::class, 'status'])->name('order.status');
         Route::get('/statusOrder/detail/{order}', [OrderController::class, 'showDetail'])->name('order.detail');
+        Route::patch('/order/{order}/update-status', [OrderController::class, 'updateStatus'])->name('/customer.order.updateStatus');
 
         Route::get('/historyOrder', [OrderController::class, 'history'])->name('order.history');
 

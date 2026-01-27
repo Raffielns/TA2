@@ -10,7 +10,10 @@
                     <i class="fas fa-arrow-left"></i>
                 </a>
             </button>
+
         </div>
+
+
 
         <div class="row">
             <!-- Order Summary -->
@@ -140,8 +143,50 @@
                 @if ($order->receipt)
                     <div class="card">
                         <a href="{{ route('admin.receipt.generate', $order->id) }}" class="btn btn-info">
-                            <i class="fa-solid fa-receipt"></i> Download Struk
+                            <i class="fa-solid fa-receipt"></i> Download Invoice
                         </a>
+                    </div>
+                @endif
+
+                {{-- Update ketika pesanan telah diterima (Customer) --}}
+                @if (auth()->user()->role == '0' && $order->status == 'dikirim')
+                    {{-- BUTTON --}}
+                    <div class="card mb-2">
+                        <button class="btn btn-success" data-toggle="modal" data-target="#customerUpdateStatusModal">
+                            <i class="fas fa-check"></i> Pesanan Diterima
+                        </button>
+                    </div>
+
+                    {{-- MODAL --}}
+                    <div class="modal fade" id="customerUpdateStatusModal" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Konfirmasi Pesanan</h5>
+                                    <button type="button" class="close" data-dismiss="modal">
+                                        <span>&times;</span>
+                                    </button>
+                                </div>
+
+                                <form action="{{ route('/customer.order.updateStatus', $order->id) }}" method="POST">
+                                    @csrf
+                                    @method('PATCH')
+
+                                    <div class="modal-body">
+                                        <p>Apakah Anda yakin pesanan sudah diterima?</p>
+                                        <input type="hidden" name="status" value="diterima">
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#customerUpdateStatusModal">
+                                            <i class="fas fa-check"></i> Pesanan Diterima
+                                        </button>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
                     </div>
                 @endif
 
@@ -178,7 +223,8 @@
                         </button>
                     </div>
                     <div class="modal-body text-center">
-                        <img src="{{ asset('storage/' . $order->payment_proof) }}" alt="Bukti Transfer" class="img-fluid">
+                        <img src="{{ asset('storage/' . $order->payment_proof) }}" alt="Bukti Transfer"
+                            class="img-fluid">
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Tutup</button>

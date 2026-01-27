@@ -380,6 +380,26 @@ class OrderController extends Controller
         return view('userMenu.historyOrder.index', compact('orderItems'));
     }
 
+    public function updateStatusCustomer(Request $request, Order $order)
+    {
+        // order milik user
+        if ($order->user_id != auth()->id()) {
+            abort(403);
+        }
+
+        // jika status dikirim
+        if ($order->status !== 'dikirim') {
+            return back()->with('error', 'Pesanan belum bisa dikonfirmasi.');
+        }
+
+        $order->update([
+            'status' => 'diterima'
+        ]);
+
+        return back()->with('success', 'Pesanan berhasil dikonfirmasi diterima.');
+    }
+
+
     /**
      * Menampilkan halaman review order
      */

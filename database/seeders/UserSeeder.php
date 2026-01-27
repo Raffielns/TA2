@@ -45,9 +45,9 @@ class UserSeeder extends Seeder
             //     'updated_at' => now()
             // ],
             [
-                'name' => 'Customer',
+                'name' => 'Pelanggan',
                 'last_name' => 'User',
-                'email' => 'customer@gmail.com',
+                'email' => 'user@gmail.com',
                 'email_verified_at' => now(),
                 'password' => bcrypt('password'),
                 'role' => 0, // misalnya 0 = customer

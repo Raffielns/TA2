@@ -60,7 +60,7 @@
             <li class="nav-item {{ request()->routeIs('customer.order') ? 'active' : '' }}">
                 <a class="nav-link" href="{{route('customer.order')}}">
                     <i class="fa-solid fa-cart-shopping"></i>
-                    <span>{{ __('Order Saya') }}</span>
+                    <span>{{ __('Pesanan Saya') }}</span>
                 </a>
             </li>
 
@@ -68,7 +68,7 @@
             <li class="nav-item {{ request()->routeIs('order.status') ? 'active' : '' }}">
                 <a class="nav-link" href="{{route('order.status')}}">
                     <i class="fa-solid fa-spinner"></i>
-                    <span>{{ __('Status Order Saya') }}</span>
+                    <span>{{ __('Status Pesanan Saya') }}</span>
                 </a>
             </li>
 
